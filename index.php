@@ -4,6 +4,7 @@
 	
 	Query for all aged message forums based off the tbl_layer.date_to_decay values. Note: most
 	forums will have a NULL entry here, which means they don't age and should be ignored.
+	This will be called hourly on a regular cronjob.
 	
 	1. Loop through each forum, query for all messages from that forum.
 	2. Loop through each message from that forum and search individually within that message for
