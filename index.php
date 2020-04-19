@@ -23,7 +23,7 @@
 	use Aws\S3\S3Client;
 	use Aws\S3\Exception\S3Exception;
 	
-	require('../../vendor/aws-autoloader.php');
+	require('vendor/aws-autoloader.php');
 
 
 	function trim_trailing_slash_local($str) {
@@ -39,7 +39,8 @@
 	function delete_image($image_file, $image_folder, $preview = false) {
 		global $local_server_path;
 		global $cnf;
-				
+		
+		//TODO: also delete _HI version of this file		
 
 		if(isset($cnf['uploads']['use'])) {
 			if($cnf['uploads']['use'] == "amazonAWS") {
