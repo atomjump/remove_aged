@@ -77,8 +77,12 @@
 				error_log($output);
 				
 				
-				if($preview !== true) {
+				if($preview === false) {
+					//A preview, always return deleted
+					return true;
+				} else {
 		
+					echo "S3 connection about to be made\n";
 										
 					//Get an S3 client
 					$s3 = new Aws\S3\S3Client([
@@ -90,9 +94,12 @@
 									'secret' => $cnf['uploads']['vendor']['amazonAWS']['secretKey'],
 								]
 					]);
+					
+					
 		
 					if($s3 != false) {
-
+						echo "S3 connection made\n";
+						
 						try {
 							// Upload data.
 							$result = $s3->deleteObject([
@@ -112,12 +119,10 @@
 							return false;
 						}
 					} else {
+						echo "S3 connection not made\n";
 						return false;
 					}
-				} else {
-					//A preview, always return deleted
-					return true;
-				}	
+				} 
 			} else {
 			
 				//Delete locally
