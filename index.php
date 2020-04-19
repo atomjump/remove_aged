@@ -107,7 +107,7 @@
 							echo "Matched image raw: " . $matches[1][$cnt] . "\n";
 							$between_slashes = explode( "/", $matches[1][$cnt]);
 							$len = count($between_slashes) - 1;
-							$image_name = $between_slashes[$len];
+							$image_name = $between_slashes[$len] . ".jpg";
 							echo "Image name: " . $image_name . "\n";
 				
 						}
