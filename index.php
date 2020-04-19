@@ -18,6 +18,8 @@
 	
 	*/
 
+	$preview = true;
+
 	use Aws\S3\S3Client;
 	use Aws\S3\Exception\S3Exception;
 	
@@ -34,7 +36,7 @@
     }
     
     
-	function delete_image($image_file, $image_folder) {
+	function delete_image($image_file, $image_folder, $preview = false) {
 		global $local_server_path;
 		global $cnf;
 				
@@ -217,18 +219,27 @@
 					
 					
 					//Delete the record
-					//TEMPOUT$api->db_select("DELETE FROM tbl_ssshout WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
+					if($preview == false) {
+						error_log("Deleting message " . $row_msg['int_ssshout_id']);
+						$api->db_select("DELETE FROM tbl_ssshout WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
+					}
 				
 				
 				} else {
 					echo "Deactivating. But leaving images.";
-					//TEMPOUT$api->db_update("tbl_ssshout", "enm_active = false WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
+					if($preview == false) {
+					   error_log("Deactivating message " . $row_msg['int_ssshout_id']);
+					   $api->db_update("tbl_ssshout", "enm_active = false WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
+					}
 				}
 			}
 			
 			if($cnf['db']['deleteDeletes'] === true) {
 				//Now delete the layer itself
-				//TEMPOUT$api->db_select("DELETE FROM tbl_layer WHERE int_layer_id = " . $this_layer);
+				if($preview == false) {
+					error_log("Deleting layer " . $this_layer);
+					$api->db_select("DELETE FROM tbl_layer WHERE int_layer_id = " . $this_layer);
+				}
 			}
 		
 	} 
