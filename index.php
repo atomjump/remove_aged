@@ -45,32 +45,31 @@
 		if(isset($cnf['uploads']['use'])) {
 			if($cnf['uploads']['use'] == "amazonAWS") {
 
-		
-		
-				if(isset($cnf['uploadSubdomainUseSSL'])) {
-					$use_ssl = $cnf['uploadSubdomainUseSSL'];
-			
+				if(isset($cnf['uploads']['vendor']['amazonAWS']['uploadUseSSL'])) {
+					$use_ssl = $cnf['uploads']['vendor']['amazonAWS']['uploadUseSSL'];
+					
 				} else {
 					$use_ssl = false;		//Default
 				}
-		
-				if(isset($cnf['uploadSubdomainEndPoint'])) {
-					$endpoint = $cnf['uploadSubdomainEndPoint'];
+				
+				if(isset($cnf['uploads']['vendor']['amazonAWS']['uploadEndPoint'])) {
+					$endpoint = $cnf['uploads']['vendor']['amazonAWS']['uploadEndPoint'];
 				} else {
 					$endpoint = "https://s3.amazonaws.com";		//Default
 				}
-		
-				if(isset($cnf['uploadSubdomainBucket'])) {
-					$bucket = $cnf['uploadSubdomainBucket'];
+				
+				if(isset($cnf['uploads']['vendor']['amazonAWS']['bucket'])) {
+					$bucket = $cnf['uploads']['vendor']['amazonAWS']['bucket'];
 				} else {
 					$bucket = "ajmp";		//Default
 				}
-		
-				if(isset($cnf['uploadsAWSRegion'])) {
-					$region = $cnf['uploadsAWSRegion'];
+				
+				if(isset($cnf['uploads']['vendor']['amazonAWS']['region'])) {
+					$region = $cnf['uploads']['vendor']['amazonAWS']['region'];
 				} else {
 					$region = 'nyc3';
-				}
+				}		
+		
 				
 				
 				$output = "Preparing to delete image: " . $image_file . "    from bucket: " . $bucket .   "   from region: " . $region .  "   at endpoint: " . $endpoint;
