@@ -91,8 +91,16 @@
 					//if($cnf['uploads']['use'] == "amazonAWS") {
 					//Search for any images in the message
 					echo "Search term = " . $cnf['uploads']['replaceHiResURLMatch'] . "\n";
+					$url_matching = "ajmp";		//Works with Amazon based jpgs on atomjump.com which include ajmp.
+					if($cnf['uploads']['replaceHiResURLMatch']) $url_matching = $cnf['uploads']['replaceHiResURLMatch'];
 					
+					$preg_search = "/href=\"(.*?)\.jpg\"\>(.*?" . $url_matching ."(.*?))\.jpg\</i";
+					preg_match($preg_search, $row_msg['var_shouted'], $matches);
+					
+					print_r($matches);					
 					//Delete the record
+					
+					
 					//TEMPOUT$api->db_select("DELETE FROM tbl_ssshout WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
 				
 				
