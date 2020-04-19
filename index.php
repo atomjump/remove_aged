@@ -75,7 +75,15 @@
 	{
 			$this_layer = $row['int_layer_id'];
 			
-			echo $this_layer . "\n";	//$config;
+			echo "Layer: " . $this_layer . "\n";
+			
+			$sql = "SELECT int_ssshout_id, var_shouted FROM tbl_ssshout WHERE int_layer_id = " . $this_layer;
+			$result_msgs = $api->db_select($sql);
+			while($row_msg = $api->db_fetch_array($result_msgs))
+			{
+				echo "Message: " . $row_msg['var_shouted'] . "\n";
+			
+			}
 		
 	} 
 		
