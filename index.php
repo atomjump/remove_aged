@@ -86,7 +86,7 @@
 				
 				global $cnf;
 				
-				if($cnf['db']['deleteDeletes']) {
+				if($cnf['db']['deleteDeletes'] === true) {
 					echo "Delete deletes";
 				}
 			}
