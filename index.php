@@ -96,22 +96,25 @@
 					
 					
 					$preg_search = "/.*?" . $url_matching ."(.*?)\.jpg/i";
-					preg_match($preg_search, $row_msg['var_shouted'], $matches);
+					preg_match_all($preg_search, $row_msg['var_shouted'], $matches);
 					
-					//print_r($matches);					
-					//Delete the record
-					if(count($matches) > 1) {
-						//Yes we have at least one image
-						for($cnt = 1; $cnt < count($matches); $cnt++) {
-							echo "Matched image raw: " . $matches[$cnt] . "\n";
-							$between_slashes = explode( "/", $matches[$cnt]);
-							$len = count($between_slashes) - 1;
-							$image_name = $between_slashes[$len];
-							echo "Image name: " . $image_name . "\n";
+					for($all_cnt = 0; $all_cnt < count($matches); $all_cnt++) {
+						//print_r($matches);					
+						
+						if(count($matches[$all_cnt]) > 1) {
+							//Yes we have at least one image
+							for($cnt = 1; $cnt < count($matches[$all_cnt]); $cnt++) {
+								echo "Matched image raw: " . $matches[$all_cnt] . "\n";
+								$between_slashes = explode( "/", $matches[$all_cnt]);
+								$len = count($between_slashes) - 1;
+								$image_name = $between_slashes[$len];
+								echo "Image name: " . $image_name . "\n";
 					
+							}
 						}
 					}
 					
+					//Delete the record
 					//TEMPOUT$api->db_select("DELETE FROM tbl_ssshout WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
 				
 				
