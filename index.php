@@ -40,7 +40,7 @@
 		global $local_server_path;
 		global $cnf;
 		
-		//TODO: also delete _HI version of this file		
+		
 
 		if(isset($cnf['uploads']['use'])) {
 			if($cnf['uploads']['use'] == "amazonAWS") {
@@ -103,14 +103,14 @@
 						
 						try {
 							// Upload data.
-							$result = $s3->deleteObject([
+							$s3->deleteObject([
 								'Bucket' => $bucket,
 								'Key'    => $image_file
 							]);
 
 							// Print the URL to the object.
-							error_log("Successfully deleted: " . $result['ObjectURL']);
-							echo "Successfully deleted: " . $result['ObjectURL'] . "\n";
+							error_log("Successfully deleted: " . $image_file);
+							echo "Successfully deleted: " . $image_file . "\n";
 							//Deleted correctly
 						
 							return true;
@@ -230,11 +230,13 @@
 							$between_slashes = explode( "/", $matches[1][$cnt]);
 							$len = count($between_slashes) - 1;
 							$image_name = $between_slashes[$len] . ".jpg";
+							$image_hi_name = $between_slashes[$len] . "_HI.jpg";
 							echo "Image name: " . $image_name . "\n";
 				
 				
 							//Delete this image
 							delete_image($image_name, $image_folder, $preview);
+							delete_image($image_hi_name, $image_folder, $preview);
 						}
 					}
 					
