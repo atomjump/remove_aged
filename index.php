@@ -243,6 +243,7 @@
 					
 					//Delete the record
 					if($preview == false) {
+						echo "Deleting message " . $row_msg['int_ssshout_id'] . "\n";
 						error_log("Deleting message " . $row_msg['int_ssshout_id']);
 						$api->db_select("DELETE FROM tbl_ssshout WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
 					}
@@ -251,6 +252,7 @@
 				} else {
 					echo "Deactivating. But leaving images.";
 					if($preview == false) {
+					   echo "Deactivating message " . $row_msg['int_ssshout_id'] . "\n";
 					   error_log("Deactivating message " . $row_msg['int_ssshout_id']);
 					   $api->db_update("tbl_ssshout", "enm_active = false WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
 					}
@@ -261,6 +263,7 @@
 				//Now delete the layer itself
 				if($preview == false) {
 					error_log("Deleting layer " . $this_layer);
+					"Deleting layer " . $this_layer . "\n";
 					$api->db_select("DELETE FROM tbl_layer WHERE int_layer_id = " . $this_layer);
 				}
 			}
