@@ -100,21 +100,19 @@
 					print_r($matches);
 					
 					
-					for($all_cnt = 0; $all_cnt < count($matches); $all_cnt++) {
-											
 						
-						if(count($matches[$all_cnt]) > 1) {
-							//Yes we have at least one image
-							for($cnt = 1; $cnt < count($matches[$all_cnt][$cnt]); $cnt++) {
-								echo "Matched image raw: " . $matches[$cnt][$all_cnt] . "\n";
-								$between_slashes = explode( "/", $matches[$all_cnt][$cnt]);
-								$len = count($between_slashes) - 1;
-								$image_name = $between_slashes[$len];
-								echo "Image name: " . $image_name . "\n";
-					
-							}
+					if(count($matches) > 1) {
+						//Yes we have at least one image
+						for($cnt = 1; $cnt < count($matches[1]); $cnt++) {
+							echo "Matched image raw: " . $matches[1][$cnt] . "\n";
+							$between_slashes = explode( "/", $matches[1][$cnt]);
+							$len = count($between_slashes) - 1;
+							$image_name = $between_slashes[$len];
+							echo "Image name: " . $image_name . "\n";
+				
 						}
 					}
+					
 					
 					//Delete the record
 					//TEMPOUT$api->db_select("DELETE FROM tbl_ssshout WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
