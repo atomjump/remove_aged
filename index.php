@@ -18,7 +18,7 @@
 	
 	*/
 
-	$preview = true;
+	$preview = true;		//Usually set to false, unless we are testing this manually 
 
 	use Aws\S3\S3Client;
 	use Aws\S3\Exception\S3Exception;
@@ -70,42 +70,53 @@
 				} else {
 					$region = 'nyc3';
 				}
-	
+				
+				
+				$output = "Preparing to delete image: " . $image_file . "    from bucket: " . $bucket .   "   from region: " . $region .  "   at endpoint: " . $endpoint;
+				echo $output . "\n";
+				error_log($output);
+				
+				
+				if($preview !== true) {
 		
 										
-				//Get an S3 client
-				$s3 = new Aws\S3\S3Client([
-						'version' => 'latest',
-						'region'  => $region,				
-						'endpoint' => $endpoint,			//E.g. 'https://nyc3.digitaloceanspaces.com'
-						'credentials' => [
-								'key'    => $cnf['uploads']['vendor']['amazonAWS']['accessKey'],
-								'secret' => $cnf['uploads']['vendor']['amazonAWS']['secretKey'],
-							]
-				]);
+					//Get an S3 client
+					$s3 = new Aws\S3\S3Client([
+							'version' => 'latest',
+							'region'  => $region,				
+							'endpoint' => $endpoint,			//E.g. 'https://nyc3.digitaloceanspaces.com'
+							'credentials' => [
+									'key'    => $cnf['uploads']['vendor']['amazonAWS']['accessKey'],
+									'secret' => $cnf['uploads']['vendor']['amazonAWS']['secretKey'],
+								]
+					]);
 		
-				if($s3 != false) {
+					if($s3 != false) {
 
-					try {
-						// Upload data.
-						$result = $s3->deleteObject([
-							'Bucket' => $bucket,
-							'Key'    => $image_file
-						]);
+						try {
+							// Upload data.
+							$result = $s3->deleteObject([
+								'Bucket' => $bucket,
+								'Key'    => $image_file
+							]);
 
-						// Print the URL to the object.
-						error_log("Successfully deleted: " . $result['ObjectURL']);
+							// Print the URL to the object.
+							error_log("Successfully deleted: " . $result['ObjectURL']);
 			
-						//Deleted correctly
+							//Deleted correctly
 						
-						return true;
-					} catch (S3Exception $e) {
-						//Error deleting from Amazon
-						error_log($e->getMessage());
+							return true;
+						} catch (S3Exception $e) {
+							//Error deleting from Amazon
+							error_log($e->getMessage());
+							return false;
+						}
+					} else {
 						return false;
 					}
 				} else {
-					return false;
+					//A preview, always return deleted
+					return true;
 				}	
 			} else {
 			
@@ -123,6 +134,8 @@
 						error_log("Failure deleting");
 						return true;
 					}
+				} else {
+					return true;
 				}
 			}
 		}
