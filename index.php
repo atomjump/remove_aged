@@ -103,7 +103,7 @@
 						
 					if(count($matches) > 1) {
 						//Yes we have at least one image
-						for($cnt = 1; $cnt < count($matches[1]); $cnt++) {
+						for($cnt = 0; $cnt < count($matches[1]); $cnt++) {
 							echo "Matched image raw: " . $matches[1][$cnt] . "\n";
 							$between_slashes = explode( "/", $matches[1][$cnt]);
 							$len = count($between_slashes) - 1;
