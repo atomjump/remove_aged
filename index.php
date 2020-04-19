@@ -82,7 +82,7 @@
 			$result_msgs = $api->db_select($sql);
 			while($row_msg = $api->db_fetch_array($result_msgs))
 			{
-				echo "Message: " . $row_msg['var_shouted'] . " ID:" . $row_msg['var_shouted'] . "\n";
+				echo "Message: " . $row_msg['var_shouted'] . "    ID:" . $row_msg['int_ssshout_id'] . "\n";
 				
 				global $cnf;
 				
