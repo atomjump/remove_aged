@@ -113,14 +113,16 @@
 				$output = "Deleting image: " . $image_folder . $image_file;
 				echo $output . "\n";
 				error_log($output);
-				if(unlink($image_folder . $image_file)) {
-					echo "Success deleting.\n";
-					error_log("Success deleting");
-					return true;
-				} else {
-					echo "Failure deleting.\n";
-					error_log("Failure deleting");
-					return true;
+				if($preview == false) {
+					if(unlink($image_folder . $image_file)) {
+						echo "Success deleting.\n";
+						error_log("Success deleting");
+						return true;
+					} else {
+						echo "Failure deleting.\n";
+						error_log("Failure deleting");
+						return true;
+					}
 				}
 			}
 		}
