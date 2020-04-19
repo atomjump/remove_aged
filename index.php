@@ -213,7 +213,7 @@
 				
 				
 							//Delete this image
-							delete_image($image_name, $image_folder);
+							delete_image($image_name, $image_folder, $preview);
 						}
 					}
 					
