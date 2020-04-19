@@ -18,6 +18,10 @@
 	
 	*/
 
+	use ..\..\Aws\S3\S3Client;
+	use ..\..\Aws\S3\Exception\S3Exception;
+	
+	require('../../vendor/aws-autoloader.php');
 
 
 	function trim_trailing_slash_local($str) {
@@ -28,6 +32,101 @@
         //Remove and then add
         return rtrim($str, "/") . '/';
     }
+    
+    
+	function delete_image($image_file, $image_folder) {
+		global $local_server_path;
+		global $cnf;
+				
+
+		if(isset($cnf['uploads']['use'])) {
+			if($cnf['uploads']['use'] == "amazonAWS") {
+
+		
+		
+				if(isset($cnf['uploadSubdomainUseSSL'])) {
+					$use_ssl = $cnf['uploadSubdomainUseSSL'];
+			
+				} else {
+					$use_ssl = false;		//Default
+				}
+		
+				if(isset($cnf['uploadSubdomainEndPoint'])) {
+					$endpoint = $cnf['uploadSubdomainEndPoint'];
+				} else {
+					$endpoint = "https://s3.amazonaws.com";		//Default
+				}
+		
+				if(isset($cnf['uploadSubdomainBucket'])) {
+					$bucket = $cnf['uploadSubdomainBucket'];
+				} else {
+					$bucket = "ajmp";		//Default
+				}
+		
+				if(isset($cnf['uploadsAWSRegion'])) {
+					$region = $cnf['uploadsAWSRegion'];
+				} else {
+					$region = 'nyc3';
+				}
+	
+		
+										
+				//Get an S3 client
+				$s3 = new Aws\S3\S3Client([
+						'version' => 'latest',
+						'region'  => $region,				
+						'endpoint' => $endpoint,			//E.g. 'https://nyc3.digitaloceanspaces.com'
+						'credentials' => [
+								'key'    => $cnf['uploads']['vendor']['amazonAWS']['accessKey'],
+								'secret' => $cnf['uploads']['vendor']['amazonAWS']['secretKey'],
+							]
+				]);
+		
+				if($s3 != false) {
+
+					try {
+						// Upload data.
+						$result = $s3->deleteObject([
+							'Bucket' => $bucket,
+							'Key'    => $image_file
+						]);
+
+						// Print the URL to the object.
+						error_log("Successfully deleted: " . $result['ObjectURL']);
+			
+						//Deleted correctly
+						
+						return true;
+					} catch (S3Exception $e) {
+						//Error deleting from Amazon
+						error_log($e->getMessage());
+						return false;
+					}
+				} else {
+					return false;
+				}	
+			} else {
+			
+				//Delete locally
+				$output = "Deleting image: " . $image_folder . $image_file;
+				echo $output . "\n";
+				error_log($output);
+				if(unlink($image_folder . $image_file)) {
+					echo "Success deleting.\n";
+					error_log("Success deleting");
+					return true;
+				} else {
+					echo "Failure deleting.\n";
+					error_log("Failure deleting");
+					return true;
+				}
+			}
+		}
+
+		
+		
+	}    
+    
 
 
 	if(!isset($aged_config)) {
@@ -56,7 +155,7 @@
 	$_SERVER['HTTP_USER_AGENT'] = $agent;
 	$start_path = add_trailing_slash_local($aged_config['serverPath']);
 
-	
+	$image_folder = $start_path . "images/im/";
 	
 	$notify = false;
 	include_once($start_path . 'config/db_connect.php');	
@@ -110,6 +209,9 @@
 							$image_name = $between_slashes[$len] . ".jpg";
 							echo "Image name: " . $image_name . "\n";
 				
+				
+							//Delete this image
+							delete_image($image_name, $image_folder);
 						}
 					}
 					
@@ -119,7 +221,7 @@
 				
 				
 				} else {
-					echo "Deactivating.";
+					echo "Deactivating. But leaving images.";
 					//TEMPOUT$api->db_update("tbl_ssshout", "enm_active = false WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
 				}
 			}
