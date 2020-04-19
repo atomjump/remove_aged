@@ -264,7 +264,7 @@
 			global $cnf;
 			
 			echo "Checking if we are to delete layer " . $this_layer . ": " . $cnf['db']['deleteDeletes'] . "\n";
-			if(($cnf['db']['deleteDeletes']) && ($cnf['db']['deleteDeletes'] == true)) {
+			if((isset($cnf['db']['deleteDeletes'])) && ($cnf['db']['deleteDeletes'] == true)) {
 				//Now delete the layer itself
 				if($preview == false) {
 					error_log("Deleting layer " . $this_layer);
