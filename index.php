@@ -82,7 +82,7 @@
 			$result_msgs = $api->db_select($sql);
 			while($row_msg = $api->db_fetch_array($result_msgs))
 			{
-				echo "Message: " . $row_msg['var_shouted'] . "\n";
+				echo "Message: " . $row_msg['var_shouted'] . " ID:" . $row_msg['var_shouted'] . "\n";
 				
 				global $cnf;
 				
@@ -93,6 +93,8 @@
 					echo "Search term = " . $cnf['uploads']['replaceHiResURLMatch'] . "\n";
 					$url_matching = "ajmp";		//Works with Amazon based jpgs on atomjump.com which include ajmp.
 					if($cnf['uploads']['replaceHiResURLMatch']) $url_matching = $cnf['uploads']['replaceHiResURLMatch'];
+					
+					$url_matching = "Atom";		//TESTING IN
 					
 					$preg_search = "/href=\"(.*?)\.jpg\"\>(.*?" . $url_matching ."(.*?))\.jpg\</i";
 					preg_match($preg_search, $row_msg['var_shouted'], $matches);
