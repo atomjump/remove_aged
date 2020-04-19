@@ -105,7 +105,7 @@
 						for($cnt = 1; $cnt < count($matches); $cnt++) {
 							echo "Matched image raw: " . $matches[$cnt] . "\n";
 							$between_slashes = explode( "/", $matches[$cnt]);
-							$len = count($between_slashes);
+							$len = count($between_slashes) - 1;
 							$image_name = $between_slashes[$len];
 							echo "Image name: " . $image_name . "\n";
 					
