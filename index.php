@@ -95,7 +95,7 @@
 					if($cnf['uploads']['replaceHiResURLMatch']) $url_matching = $cnf['uploads']['replaceHiResURLMatch'];
 					
 					
-					$preg_search = "/(.*?" . $url_matching ."\/(.*?))\.jpg/i";
+					$preg_search = "/(.*?" . $url_matching ."(.*?))\.jpg/i";
 					preg_match($preg_search, $row_msg['var_shouted'], $matches);
 					
 					print_r($matches);					
