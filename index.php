@@ -272,10 +272,10 @@
 					$sql_del = "DELETE FROM tbl_layer WHERE int_layer_id = " . $this_layer;
 					$api->db_select($sql_del);
 				} else {
-					"Not deleting layer " . $this_layer . "\n";
+					echo "Not deleting layer " . $this_layer . "\n";
 				}
 			} else {
-				"Not deleting layer." . $this_layer . "\n";
+				echo "Not deleting layer." . $this_layer . "\n";
 			}
 		
 	} 
