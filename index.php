@@ -185,7 +185,7 @@
 	
 
 	
-	$sql = "SELECT * FROM tbl_layer WHERE date_to_decay IS NOT NULL AND date_to_decay < NOW()";
+	$sql = "SELECT * FROM tbl_layer WHERE date_to_decay IS NOT NULL";	//TESTING OUT: AND date_to_decay < NOW()";
     $result = $api->db_select($sql);
 	while($row = $api->db_fetch_array($result))
 	{
