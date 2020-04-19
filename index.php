@@ -265,7 +265,11 @@
 					error_log("Deleting layer " . $this_layer);
 					"Deleting layer " . $this_layer . "\n";
 					$api->db_select("DELETE FROM tbl_layer WHERE int_layer_id = " . $this_layer);
+				} else {
+					"Not deleting layer " . $this_layer . "\n";
 				}
+			} else {
+				"Not deleting layer." . $this_layer . "\n";
 			}
 		
 	} 
