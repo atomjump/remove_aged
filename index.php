@@ -78,7 +78,7 @@
 				error_log($output);
 				
 				
-				if($preview === false) {
+				if($preview !== false) {
 					//A preview, always return deleted
 					return true;
 				} else {
