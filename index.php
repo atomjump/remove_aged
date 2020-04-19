@@ -94,7 +94,6 @@
 					$url_matching = "ajmp";		//Works with Amazon based jpgs on atomjump.com which include ajmp.
 					if($cnf['uploads']['replaceHiResURLMatch']) $url_matching = $cnf['uploads']['replaceHiResURLMatch'];
 					
-					$url_matching = "Atom";		//TESTING IN
 					
 					$preg_search = "/href=\"(.*?)\.jpg\"\>(.*?" . $url_matching ."(.*?))\.jpg\</i";
 					preg_match($preg_search, $row_msg['var_shouted'], $matches);
