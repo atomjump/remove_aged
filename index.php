@@ -117,6 +117,7 @@
 						} catch (S3Exception $e) {
 							//Error deleting from Amazon
 							error_log($e->getMessage());
+							echo "Error deleting: " . $e->getMessage() . "\n";
 							return false;
 						}
 					} else {
