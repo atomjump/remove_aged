@@ -261,7 +261,10 @@
 				}
 			}
 			
-			if($cnf['db']['deleteDeletes'] === true) {
+			global $cnf;
+			
+			echo "Checking if we are to delete layer: " . $cnf['db']['deleteDeletes'];
+			if(($cnf['db']['deleteDeletes']) && ($cnf['db']['deleteDeletes'] === true)) {
 				//Now delete the layer itself
 				if($preview == false) {
 					error_log("Deleting layer " . $this_layer);
