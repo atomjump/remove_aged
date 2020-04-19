@@ -245,7 +245,7 @@
 					if($preview == false) {
 						echo "Deleting message " . $row_msg['int_ssshout_id'] . "\n";
 						error_log("Deleting message " . $row_msg['int_ssshout_id']);
-						$api->db_select("DELETE FROM tbl_ssshout WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
+						$api->dbquery("DELETE FROM tbl_ssshout WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
 					}
 				
 				
@@ -264,7 +264,7 @@
 				if($preview == false) {
 					error_log("Deleting layer " . $this_layer);
 					"Deleting layer " . $this_layer . "\n";
-					$api->db_select("DELETE FROM tbl_layer WHERE int_layer_id = " . $this_layer);
+					$api->dbquery("DELETE FROM tbl_layer WHERE int_layer_id = " . $this_layer);
 				} else {
 					"Not deleting layer " . $this_layer . "\n";
 				}
