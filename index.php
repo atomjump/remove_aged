@@ -18,7 +18,7 @@
 	
 	*/
 
-	$preview = true;		//Usually set to false, unless we are testing this manually 
+	$preview = false;		//Usually set to false, unless we are testing this manually 
 
 	use Aws\S3\S3Client;
 	use Aws\S3\Exception\S3Exception;
