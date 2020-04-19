@@ -268,7 +268,7 @@
 				//Now delete the layer itself
 				if($preview == false) {
 					error_log("Deleting layer " . $this_layer);
-					"Deleting layer " . $this_layer . "\n";
+					echo "Deleting layer " . $this_layer . "\n";
 					$sql_del = "DELETE FROM tbl_layer WHERE int_layer_id = " . $this_layer;
 					$api->db_select($sql_del);
 				} else {
