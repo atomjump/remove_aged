@@ -177,7 +177,7 @@
 			echo "Layer: " . $this_layer . "\n";
 			
 			$sql = "SELECT int_ssshout_id, var_shouted FROM tbl_ssshout WHERE int_layer_id = " . $this_layer;
-			echo $sql . "\n";
+			//echo $sql . "\n";
 			$result_msgs = $api->db_select($sql);
 			while($row_msg = $api->db_fetch_array($result_msgs))
 			{
