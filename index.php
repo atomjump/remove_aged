@@ -6,6 +6,8 @@
 	forums will have a NULL entry here, which means they don't age and should be ignored.
 	This will be called hourly on a regular cronjob.
 	
+	0 * * * *       /usr/bin/php /your_server_path/api/plugins/remove_aged/index.php
+	
 	1. Loop through each forum, query for all messages from that forum.
 	2. Loop through each message from that forum and search individually within that message for
 	images that are held on this server. They will start with the config.json JSON entry uploads.vendor.imageURL
