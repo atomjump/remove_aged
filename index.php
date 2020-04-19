@@ -97,14 +97,16 @@
 					
 					$preg_search = "/.*?" . $url_matching ."(.*?)\.jpg/i";
 					preg_match_all($preg_search, $row_msg['var_shouted'], $matches);
+					print_r($matches);
+					
 					
 					for($all_cnt = 0; $all_cnt < count($matches); $all_cnt++) {
-						//print_r($matches);					
+											
 						
 						if(count($matches[$all_cnt]) > 1) {
 							//Yes we have at least one image
-							for($cnt = 1; $cnt < count($matches[$all_cnt]); $cnt++) {
-								echo "Matched image raw: " . $matches[$all_cnt][$cnt] . "\n";
+							for($cnt = 1; $cnt < count($matches[$all_cnt][$cnt]); $cnt++) {
+								echo "Matched image raw: " . $matches[$cnt][$all_cnt] . "\n";
 								$between_slashes = explode( "/", $matches[$all_cnt][$cnt]);
 								$len = count($between_slashes) - 1;
 								$image_name = $between_slashes[$len];
