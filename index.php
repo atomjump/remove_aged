@@ -196,7 +196,7 @@
 					
 					$preg_search = "/.*?" . $url_matching ."(.*?)\.jpg/i";
 					preg_match_all($preg_search, $row_msg['var_shouted'], $matches);
-					print_r($matches);
+					//print_r($matches);
 					
 					
 						
