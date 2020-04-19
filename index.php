@@ -110,7 +110,7 @@
 
 							// Print the URL to the object.
 							error_log("Successfully deleted: " . $result['ObjectURL']);
-			
+							echo "Successfully deleted: " . $result['ObjectURL'] . "\n";
 							//Deleted correctly
 						
 							return true;
