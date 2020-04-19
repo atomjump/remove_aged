@@ -83,7 +83,10 @@
 			while($row_msg = $api->db_fetch_array($result_msgs))
 			{
 				echo "Message: " . $row_msg['var_shouted'] . "\n";
-			
+				
+				if($config['db']['deleteDeletes']) {
+					echo "Delete deletes\n";
+				}
 			}
 		
 	} 
