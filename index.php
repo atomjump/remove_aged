@@ -110,7 +110,7 @@
 			} else {
 			
 				//Delete locally
-				$output = "Preparing to deleting image: " . $image_folder . $image_file;
+				$output = "Preparing to delete image: " . $image_folder . $image_file;
 				echo $output . "\n";
 				error_log($output);
 				if($preview !== true) {
