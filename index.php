@@ -87,8 +87,24 @@
 				global $cnf;
 				
 				if($cnf['db']['deleteDeletes'] === true) {
-					echo "Delete deletes";
+					
+					//if($cnf['uploads']['use'] == "amazonAWS") {
+					//Search for any images in the message
+					echo "Search term = " . $cnf['uploads']['replaceHiResURLMatch'] . "\n";
+					
+					//Delete the record
+					//TEMPOUT$api->db_select("DELETE FROM tbl_ssshout WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
+				
+				
+				} else {
+					echo "Deactivating.";
+					//TEMPOUT$api->db_update("tbl_ssshout", "enm_active = false WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
 				}
+			}
+			
+			if($cnf['db']['deleteDeletes'] === true) {
+				//Now delete the layer itself
+				//TEMPOUT$api->db_select("DELETE FROM tbl_layer WHERE int_layer_id = " . $this_layer);
 			}
 		
 	} 
