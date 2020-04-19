@@ -98,9 +98,15 @@
 					$preg_search = "/.*?" . $url_matching ."(.*?)\.jpg/i";
 					preg_match($preg_search, $row_msg['var_shouted'], $matches);
 					
-					print_r($matches);					
+					//print_r($matches);					
 					//Delete the record
+					if(count($matches) > 1) {
+						//Yes we have at least one image
+						for($cnt = 1; $cnt < count($matches); $cnt++) {
+							echo "Matched image raw: " . $matches[$cnt] . "\n";
 					
+						}
+					}
 					
 					//TEMPOUT$api->db_select("DELETE FROM tbl_ssshout WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
 				
