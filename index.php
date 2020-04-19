@@ -84,9 +84,9 @@
 			{
 				echo "Message: " . $row_msg['var_shouted'] . "\n";
 				
-				global $config;
+				global $cnf;
 				
-				if($config['db']['deleteDeletes']) {
+				if($cnf['db']['deleteDeletes']) {
 					echo "Delete deletes";
 				}
 			}
