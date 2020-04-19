@@ -71,14 +71,11 @@
 	
 	$sql = "SELECT * FROM tbl_layer WHERE date_to_decay IS NOT NULL AND date_to_decay < NOW()";
     $result = $api->db_select($sql);
-	if($rows = $api->db_fetch_array($result))
+	while($row = $api->db_fetch_array($result))
 	{
-		foreach($rows as $row) {
 			$this_layer = $row['int_layer_id'];
 			
 			echo $this_layer . "\n";	//$config;
-			
-		}
 		
 	} 
 		
