@@ -76,7 +76,7 @@
 		foreach($rows as $row) {
 			$this_layer = $row['int_layer_id'];
 			
-			
+			echo $this_layer;	//$config;
 			
 		}
 		
