@@ -183,6 +183,9 @@
 		//Override the selected database
 		$_REQUEST['uniqueFeedbackId'] = $aged_config['layerTitleDbOverride'];
 	}
+	if($aged_config['preview']) {
+		$preview = $aged_config['preview'];
+	}
 
 	$image_folder = $start_path . "images/im/";
 	
