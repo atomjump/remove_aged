@@ -184,7 +184,8 @@
 		$_REQUEST['uniqueFeedbackId'] = $aged_config['layerTitleDbOverride'];
 	}
 	if($aged_config['preview']) {
-		$preview = $aged_config['preview'];
+		echo $aged_config['preview'];
+		$preview = true;
 	}
 
 	$image_folder = $start_path . "images/im/";
