@@ -184,6 +184,7 @@
 		$_REQUEST['uniqueFeedbackId'] = $aged_config['layerTitleDbOverride'];
 	}
 	if($aged_config['preview']) {
+		echo "Preview mode ON\n";
 		$preview = $aged_config['preview'];
 	}
 
@@ -200,7 +201,7 @@
 	
 
 	echo "Checking for decayed layers...\n";
-	$sql = "SELECT * FROM tbl_layer WHERE date_to_decay IS NOT NULL"; //TEMPOUT AND date_to_decay < NOW()";
+	$sql = "SELECT * FROM tbl_layer WHERE date_to_decay IS NOT NULL AND date_to_decay < NOW()";
     $result = $api->db_select($sql);
 	while($row = $api->db_fetch_array($result))
 	{
