@@ -179,6 +179,10 @@
 	ini_set("user_agent",$agent);
 	$_SERVER['HTTP_USER_AGENT'] = $agent;
 	$start_path = add_trailing_slash_local($aged_config['serverPath']);
+	if($aged_config['layerTitleDbOverride']) {
+		//Override the selected database
+		$_REQUEST['uniqueFeedbackId'] = $aged_config['layerTitleDbOverride'];
+	}
 
 	$image_folder = $start_path . "images/im/";
 	

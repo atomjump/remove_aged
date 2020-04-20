@@ -1,3 +1,4 @@
 {
-    "serverPath": "your_path/loop-server/"
+    "serverPath": "your_path/loop-server/",
+    "layerTitleDbOverride": null
 }
