@@ -186,6 +186,12 @@
 	if($aged_config['preview']) {
 		$preview = $aged_config['preview'];
 	}
+	
+	if($aged_config['randomPause']) {
+		//Pause execution for a random interval to prevent multiple servers in a cluster calling at the same time on the cron.
+		$pause_by = rand(1,$aged_config['randomPause']);
+		sleep($pause_by);
+	}
 
 	$image_folder = $start_path . "images/im/";
 	
