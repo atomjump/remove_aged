@@ -180,7 +180,9 @@
 	$_SERVER['HTTP_USER_AGENT'] = $agent;
 	$start_path = add_trailing_slash_local($aged_config['serverPath']);
 	if($aged_config['layerTitleDbOverride']) {
-		//Override the selected database
+		//Override the selected database - this should be used on secondary servers (e.g. in atomjump.com's case)
+		//to delete them off a particular sharded database, not the main one. E.g. "api0", "api1", which are stored in the config.json
+		//file for the main server under the 'scaleUp' options
 		$_REQUEST['uniqueFeedbackId'] = $aged_config['layerTitleDbOverride'];
 	}
 	if($aged_config['preview']) {
