@@ -273,14 +273,14 @@
 					   echo "Deactivating message " . $row_msg['int_ssshout_id'] . "\n";
 					   error_log("Deactivating message " . $row_msg['int_ssshout_id']);
 					   
-					   $api->db_update("tbl_ssshout", "enm_active = false WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
+					   $api->db_update("tbl_ssshout", "enm_active = 'false' WHERE int_ssshout_id = " . $row_msg['int_ssshout_id']);
 					}
 				}
 			}
 			
 			global $cnf;
 			
-			if((isset($cnf['db']['deleteDeletes'])) && ($cnf['db']['deleteDeletes'] == true)) {
+			if((isset($cnf['db']['deleteDeletes'])) && ($cnf['db']['deleteDeletes'] === true)) {
 				//Now delete the layer itself
 				if($preview == false) {
 					error_log("Deleting layer " . $this_layer);
