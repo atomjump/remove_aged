@@ -32,15 +32,17 @@
 		//Yes passed the security check
 		$image_folder = $start_path . "images/im/";
 		$image_file = $_REQUEST['imageName'];
+		if(isset($image_file) &&($image_file != "")) {
 		
-		if(unlink($image_folder . $image_file)) {
-			echo "Success deleting " . $image_file . ".\n";
-			error_log("Success deleting " . $image_folder . $image_file . ".");
-			return true;
-		} else {
-			echo "Failure deleting " . $image_file . ".\n";
-			error_log("Failure deleting " . $image_folder . $image_file . ".");
-			return true;
+			if(unlink($image_folder . $image_file)) {
+				echo "Success deleting " . $image_file . ".\n";
+				error_log("Success deleting " . $image_folder . $image_file . ".");
+				return true;
+			} else {
+				echo "Failure deleting " . $image_file . ".\n";
+				error_log("Failure deleting " . $image_folder . $image_file . ".");
+				return true;
+			}
 		}
 	} else {
 		echo "Sorry, you have no permission.";
