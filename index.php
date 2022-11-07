@@ -300,13 +300,19 @@
 					$sql_del = "DELETE FROM tbl_layer WHERE int_layer_id = " . $this_layer;
 					$api->db_select($sql_del);
 				} else {
-					echo "Not deleting layer " . $this_layer . "\n";
+					echo "Would be deleting layer " . $this_layer . "\n";
 				}
 			} else {
-				echo "Not deleting layer." . $this_layer . "\n";
+				echo "Not deleting layer " . $this_layer . "\n";
 				
-				//But since we have now processed this layer and deactivated it's messages, we don't need to again.
-				$api->db_update("tbl_layer", "date_to_decay = NULL WHERE int_layer_id = " . $this_layer);
+				if($preview == false) {
+					//But since we have now processed this layer and deactivated it's messages, we don't need to again.
+					
+					$api->db_update("tbl_layer", "date_to_decay = NULL WHERE int_layer_id = " . $this_layer);
+					echo "Cleared layer " . $this_layer . " decay date.\n";
+				} else {
+					echo "Would be clearing layer " . $this_layer . " decay date.\n";
+				}
 			}
 		
 	} 
