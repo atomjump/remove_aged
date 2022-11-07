@@ -292,6 +292,9 @@
 				}
 			} else {
 				echo "Not deleting layer." . $this_layer . "\n";
+				
+				//But since we have now processed this layer and deactivated it's messages, we don't need to again.
+				$api->db_update("tbl_layer", "date_to_decay = NULL WHERE int_layer_id = " . $this_layer);
 			}
 		
 	} 
