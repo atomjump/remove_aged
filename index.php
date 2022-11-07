@@ -210,12 +210,12 @@
 		echo "Preview mode ON\n";
 	}
 	
-	echo "Using database host: " .  $cnf['db']['hosts'][0] . "  name:" . $cnf['db']['name'] . "\n";
+	echo "Using database host: " .  $db_cnf['hosts'][0] . "  name:" . $db_cnf['name'] . "\n";
 		
 	$delete_forum = false;		
-	if(isset($cnf['db']['deleteDeletes'])) {
+	if(isset($db_cnf['deleteDeletes'])) {
 		//Defaults to the server-defined option, unless..
-		$delete_forum = $cnf['db']['deleteDeletes'];
+		$delete_forum = $db_cnf['deleteDeletes'];
 	}
 	if(isset($aged_config['deleteForum'])) {
 		//Unless we have an override in our local config
