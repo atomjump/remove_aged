@@ -207,6 +207,13 @@
 	if($preview == true) {
 		echo "Preview mode ON\n";
 	}
+	
+	
+	$delete_forum = $cnf['db']['deleteDeletes'];		//Defaults to the server-defined option, unless..
+	if(isset($aged_config['deleteForum'])) {
+		//Unless we have an override in our local config
+		$delete_forum = $aged_config['deleteForum'];	
+	}
 
 	echo "Checking for decayed layers...\n";
 	$sql = "SELECT * FROM tbl_layer WHERE date_to_decay IS NOT NULL AND date_to_decay < NOW()";
@@ -226,7 +233,7 @@
 				
 				global $cnf;
 				
-				if($cnf['db']['deleteDeletes'] === true) {
+				if($delete_forum === true) {
 					
 					
 					//Search for any images in the message
@@ -280,7 +287,7 @@
 			
 			global $cnf;
 			
-			if((isset($cnf['db']['deleteDeletes'])) && ($cnf['db']['deleteDeletes'] === true)) {
+			if($delete_forum === true) {
 				//Now delete the layer itself
 				if($preview == false) {
 					error_log("Deleting layer " . $this_layer);

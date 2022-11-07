@@ -1,5 +1,6 @@
 {
     "serverPath": "your_path/loop-server/",
     "layerTitleDbOverride": null,
-    "preview": false
+    "preview": false,
+    "deleteForum": false
 }
