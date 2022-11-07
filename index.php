@@ -207,9 +207,12 @@
 	if($preview == true) {
 		echo "Preview mode ON\n";
 	}
-	
-	
-	$delete_forum = $cnf['db']['deleteDeletes'];		//Defaults to the server-defined option, unless..
+		
+	$delete_forum = false;		
+	if(isset($cnf['db']['deleteDeletes'])) {
+		//Defaults to the server-defined option, unless..
+		$delete_forum = $cnf['db']['deleteDeletes'];
+	}
 	if(isset($aged_config['deleteForum'])) {
 		//Unless we have an override in our local config
 		$delete_forum = $aged_config['deleteForum'];	
