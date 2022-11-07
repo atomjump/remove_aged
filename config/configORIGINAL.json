@@ -2,5 +2,7 @@
     "serverPath": "your_path/loop-server/",
     "layerTitleDbOverride": null,
     "preview": false,
-    "deleteForum": false
+    "deleteForum": false,
+    "securityCode": "sample234ef4f-CHANGEME",
+    "urlPathToDeleteScript": "/api/plugins/remove_aged/remove-image.php"
 }

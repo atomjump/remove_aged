@@ -41,6 +41,7 @@
 	function delete_image($image_file, $image_folder, $preview = false) {
 		global $local_server_path;
 		global $cnf;
+		global $aged_config;
 		
 		
 
@@ -130,6 +131,19 @@
 			
 				//Delete locally
 				$output = "Preparing to delete image: " . $image_folder . $image_file;
+				
+				//Now do this for each of the $cnf['ips'], call a delete_image script on each 
+				if(isset($aged_config['urlPathToDeleteScript'])) {
+					for($cnt = 0; $cnt < count($cnf['ips']); $cnt++) {
+						$url = "http://" . $cnf['ips'][$cnt] . $aged_config['urlPathToDeleteScript'] . "?code=" . $aged_config['securityCode'] . "&imageName=" . $image_file;
+						echo "Running URL " . $url . " to delete image.\n";
+						if($preview !== true) {
+							file_get_contents($url);
+						}
+					}
+				}
+				
+				//Delete our own one, just in case it is not already deleted
 				echo $output . "\n";
 				error_log($output);
 				if($preview !== true) {
