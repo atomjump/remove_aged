@@ -209,6 +209,8 @@
 	if($preview == true) {
 		echo "Preview mode ON\n";
 	}
+	
+	echo "Using database host: " .  $cnf['db']['hosts'][0] . "  name:" . $cnf['db']['name'] . "\n";
 		
 	$delete_forum = false;		
 	if(isset($cnf['db']['deleteDeletes'])) {
