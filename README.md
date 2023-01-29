@@ -1,5 +1,7 @@
 <img src="https://atomjump.com/images/logo80.png">
 
+__WARNING: this project has now moved to https://src.atomjump.com/atomjump/remove_aged.git__
+
 # remove_aged
 Removes aged messages and any corresponding images from an AtomJump Messaging database.
 
